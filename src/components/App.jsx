@@ -11,6 +11,12 @@ function App() {
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
 
+  function closeAllPopups() {
+    setIsEditProfilePopupOpen(false)
+    setIsAddPlacePopupOpen(false)
+    setIsEditAvatarPopupOpen(false)
+  }
+
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true)
   }
@@ -41,6 +47,7 @@ function App() {
         title='Редактировать профиль'
         titleButton='Сохранить'
         isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           className="popup__input popup__input_type_name"
@@ -71,6 +78,7 @@ function App() {
         title='Новое место'
         titleButton='Создать'
         isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           className="popup__input popup__input_type_place-name"
@@ -99,6 +107,7 @@ function App() {
         title='Обновить аватар'
         titleButton='Сохранить'
         isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}
       >
         <input
           className="popup__input popup__input_type_userphoto-link"
