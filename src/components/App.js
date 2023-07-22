@@ -1,8 +1,8 @@
-import Header from "./Header/Header.jsx";
-import Main from "./Main/Main.jsx";
-import Footer from "./Footer/Footer.jsx";
-import PopupWithForm from "./PopupWithForm/PopupWithForm.jsx";
-import ImagePopup from "./ImagePopup/ImagePopup.jsx";
+import Header from "./Header/Header.js";
+import Main from "./Main/Main.js";
+import Footer from "./Footer/Footer.js";
+import PopupWithForm from "./PopupWithForm/PopupWithForm.js";
+import ImagePopup from "./ImagePopup/ImagePopup.js";
 import { useState } from "react";
 
 function App() {
@@ -10,11 +10,15 @@ function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false)
   const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false)
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
+  const [selectedCard, setSelectedCard] = useState({})
+  const [isImagePopup, setIsImagePopup] = useState(false)
+  
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
     setIsAddPlacePopupOpen(false)
     setIsEditAvatarPopupOpen(false)
+    setIsImagePopup(false)
   }
 
   function handleEditProfileClick() {
@@ -29,6 +33,12 @@ function App() {
     setIsEditAvatarPopupOpen(true)
   }
 
+  function handleCardClick(card) {
+    setSelectedCard(card)
+    setIsImagePopup(true)
+
+  }
+
   return (
     <div className="page__content">
 
@@ -38,6 +48,7 @@ function App() {
         onEditProfile={handleEditProfileClick}
         onAddPlace={handleAddPlaceClick}
         onEditAvatar={handleEditAvatarClick}
+        onCardClick={handleCardClick}
       />
 
       <Footer />
@@ -126,7 +137,7 @@ function App() {
         titleButton='Да'
       />
 
-      <ImagePopup></ImagePopup>
+      <ImagePopup card={selectedCard} isOpen={isImagePopup} onClose={closeAllPopups} />
 
     </div>
 
