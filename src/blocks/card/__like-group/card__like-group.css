@@ -1,7 +1,0 @@
-.card__like-group{
-    display: flex;
-    flex-direction: column;
-    flex-shrink: 0;
-    margin-left: 12px;
-    align-items: center;
-}
