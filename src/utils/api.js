@@ -16,6 +16,9 @@ class Api {
             }
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     getCards() {
@@ -25,6 +28,9 @@ class Api {
             }
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     setUserInfo(data) {
@@ -37,6 +43,9 @@ class Api {
             })
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     setAvatar(data) {
@@ -48,6 +57,9 @@ class Api {
             })
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     addCard(data) {
@@ -60,6 +72,9 @@ class Api {
             })
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     addLike(cardId) {
@@ -70,6 +85,9 @@ class Api {
             }
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     deleteLike(cardId) {
@@ -80,6 +98,9 @@ class Api {
             }
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
     deleteCard(cardId) {
@@ -90,6 +111,9 @@ class Api {
             }
         })
             .then(this._checkResponse)
+            .catch((error) => {
+                console.log(error)
+              })
     }
 
 

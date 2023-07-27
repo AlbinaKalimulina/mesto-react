@@ -14,9 +14,11 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                 setUserName(dataUser.name)
                 setUserDescription(dataUser.about)
                 setUserAvatar(dataUser.avatar)
-                dataCard.forEach(element => element.myid = dataUser._id)
                 setCards(dataCard)
             })
+            .catch((error) => {
+                console.log(error)
+              })
     }, [])
 
 
