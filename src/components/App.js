@@ -12,7 +12,7 @@ function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false)
   const [selectedCard, setSelectedCard] = useState({})
   const [isImagePopup, setIsImagePopup] = useState(false)
-  
+
 
   function closeAllPopups() {
     setIsEditProfilePopupOpen(false)
