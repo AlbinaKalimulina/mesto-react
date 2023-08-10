@@ -1,37 +1,20 @@
-import { useState, useEffect } from "react"
-import api from "../../utils/api.js"
+import { useContext } from "react"
 import Card from "../Card/Card.js"
+import CurrentUserContext from "../../contexts/CurrentUserContext.js"
 
-export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick }) {
-    const [userName, setUserName] = useState('')
-    const [userDescription, setUserDescription] = useState('')
-    const [userAvatar, setUserAvatar] = useState('')
-    const [cards, setCards] = useState([])
-  
-    useEffect(() => {
-        Promise.all([api.getInfo(), api.getCards()])
-            .then(([dataUser, dataCard]) => {
-                setUserName(dataUser.name)
-                setUserDescription(dataUser.about)
-                setUserAvatar(dataUser.avatar)
-                setCards(dataCard)
-            })
-            .catch((error) => {
-                console.log(error)
-              })
-    }, [])
-
+export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, cards }) {
+    const currentUser = useContext(CurrentUserContext)
 
 
     return (
         <main className="content">
             <section className="profile">
                 <button type="button" className="profile__avatar-button" onClick={onEditAvatar}>
-                    <img className="profile__avatar" src={userAvatar} alt="фото профиля" />
+                    <img className="profile__avatar" src={currentUser.avatar} alt="фото профиля" />
                 </button>
                 <div className="profile__info" aria-label="Информация профиля">
-                    <h1 className="profile__name">{userName}</h1>
-                    <p className="profile__description">{userDescription}</p>
+                    <h1 className="profile__name">{currentUser.name}</h1>
+                    <p className="profile__description">{currentUser.about}</p>
                 </div>
                 <button
                     className="profile__edit-button"
@@ -52,7 +35,7 @@ export default function Main({ onEditProfile, onAddPlace, onEditAvatar, onCardCl
                     {cards.map(data => {
                         return (
                             <div key={data._id}>
-                                <Card card={data} onCardClick={onCardClick}/>
+                                <Card card={data} onCardClick={onCardClick} />
                             </div>
                         )
                     })}
