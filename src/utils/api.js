@@ -1,4 +1,5 @@
 class Api {
+    
     constructor(options) {
         this._url = options.baseUrl;
         this._headers = options.headers;
@@ -76,7 +77,6 @@ class Api {
                 console.log(error)
               })
     }
-
     addLike(cardId) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
             method: 'PUT',
