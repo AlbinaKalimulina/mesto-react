@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopupWithForm from "../PopupWithForm/PopupWithForm"
 
 export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
 
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      // Очищаем значения полей ввода
+      setTitle("");
+      setLink("");
+    }
+  }, [isOpen]);
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -23,9 +31,6 @@ export default function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
     };
     // Вызываем обработчик onAddPlace и передаем новую карточку
     onAddPlace(newCard);
-    // Очищаем значения полей ввода
-    setTitle("");
-    setLink("");
   };
 
 

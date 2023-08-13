@@ -7,14 +7,15 @@ import { useContext, useEffect, useState } from "react";
 export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
     const currentUser = useContext(CurrentUserContext);
 
-    useEffect(() => {
-        setName(currentUser.name);
-        setDescription(currentUser.about);
-    }, [currentUser]);
-
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
 
+    useEffect(() => {
+        if (isOpen) {
+            setName(currentUser.name);
+            setDescription(currentUser.about);
+        }
+    }, [isOpen]);
 
     const handleNameChange = (e) => {
         setName(e.target.value);
@@ -50,7 +51,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
                 required=""
                 minLength={2}
                 maxLength={40}
-                value={name}
+                value={name || ''}
                 onChange={handleNameChange}
             />
             <span className="error-message popup__error" id="username-error" />
@@ -63,7 +64,7 @@ export default function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
                 required=""
                 minLength={2}
                 maxLength={200}
-                value={description}
+                value={description || ''}
                 onChange={handleDescriptionChange}
             />
             <span className="error-message popup__error" id="description-error" />
